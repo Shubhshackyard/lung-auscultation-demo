@@ -74,28 +74,29 @@ export default function LungVisualizer({ onSelectRegion }: LungVisualizerProps) 
   }
 
   return (
-    <div className="relative w-full max-w-2xl mx-auto aspect-[4/5] bg-blue-50 rounded-lg shadow-md p-4">
-      {selectedRegion && (
-        <div className="absolute top-2 left-2 right-2 bg-teal-50 border border-teal-200 p-2 rounded text-sm text-teal-800 z-20">
-          <p className="font-medium">
-            Selected: {lungRegions.find(r => r.id === selectedRegion)?.name}
-          </p>
-          <p className="text-xs mt-1">
-            {lungRegions.find(r => r.id === selectedRegion)?.tooltip}
-          </p>
-        </div>
-      )}
-      
-      {!selectedRegion && (
-        <div className="absolute top-2 left-2 right-2 bg-white bg-opacity-80 p-2 rounded text-sm text-gray-700">
-          <p className="font-medium text-blue-800 mb-1">Interactive Lung Map</p>
-          <p>Color codes: <span className="text-green-600">●</span> Normal sounds, <span className="text-red-600">●</span> Abnormal sounds</p>
-          <p>Click on any marker to hear the corresponding sound. Hover for information.</p>
-        </div>
-      )}
+    <div className="flex flex-col w-full max-w-2xl mx-auto bg-blue-50 rounded-lg shadow-md p-4">
+      {/* Info header */}
+      <div className="mb-2">
+        {selectedRegion ? (
+          <div className="bg-teal-50 border border-teal-200 p-2 rounded text-sm text-teal-800 z-20">
+            <p className="font-medium">
+              Selected: {lungRegions.find(r => r.id === selectedRegion)?.name}
+            </p>
+            <p className="text-xs mt-1">
+              {lungRegions.find(r => r.id === selectedRegion)?.tooltip}
+            </p>
+          </div>
+        ) : (
+          <div className="bg-white bg-opacity-80 p-2 rounded text-sm text-gray-700">
+            <p className="font-medium text-blue-800 mb-1">Interactive Lung Map</p>
+            <p>Color codes: <span className="text-green-600">●</span> Normal sounds, <span className="text-red-600">●</span> Abnormal sounds</p>
+            <p>Click on any marker to hear the corresponding sound. Hover for information.</p>
+          </div>
+        )}
+      </div>
 
-      {/* Lung outline SVG */}
-      <div className="mt-20 mx-auto w-full h-4/5 relative">
+      {/* Lung visualization - with aspect ratio container */}
+      <div className="relative w-full aspect-[4/5] mb-4">
         <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
           {/* Right lung */}
           <path 
@@ -190,10 +191,10 @@ export default function LungVisualizer({ onSelectRegion }: LungVisualizerProps) 
         })}
       </div>
 
-      {/* Legend */}
-      <div className="absolute bottom-2 left-2 right-2 bg-white bg-opacity-75 p-2 text-xs rounded">
-        <div className="flex flex-wrap justify-between">
-          <div className="w-full md:w-1/2">
+      {/* Legend - moved to bottom of flex column instead of absolute positioning */}
+      <div className="bg-white bg-opacity-75 p-2 text-xs rounded mt-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <div>
             <p className="font-medium">Key anatomical regions:</p>
             <ul className="text-xs mt-1">
               <li>• Upper lobes - Apex</li>
@@ -201,7 +202,7 @@ export default function LungVisualizer({ onSelectRegion }: LungVisualizerProps) 
               <li>• Lower lobes - Base</li>
             </ul>
           </div>
-          <div className="w-full md:w-1/2 mt-2 md:mt-0">
+          <div>
             <p className="font-medium">Auscultation sequence:</p>
             <ul className="text-xs mt-1">
               <li>• Compare left and right sides</li>

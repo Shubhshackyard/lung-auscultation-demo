@@ -1,4 +1,7 @@
+"use client"
+
 import { useState, useRef, useEffect } from 'react'
+import { useAudio } from '@/context/AudioContext'
 
 interface Sound {
   id: string;
@@ -12,63 +15,87 @@ interface Sound {
 interface AudioPlayerProps {
   sound: Sound;
   compact?: boolean;
+  autoplayOnMount?: boolean;
 }
 
-export default function AudioPlayer({ sound, compact = false }: AudioPlayerProps) {
+export default function AudioPlayer({ sound, compact = false, autoplayOnMount = false }: AudioPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false)
-  const [duration, setDuration] = useState(0)
   const [currentTime, setCurrentTime] = useState(0)
+  const [duration, setDuration] = useState(0)
   const audioRef = useRef<HTMLAudioElement>(null)
-
+  
+  const { currentlyPlaying, play, stop } = useAudio()
+  
+  // Effect for controlling playback based on global context
   useEffect(() => {
-    const audio = audioRef.current
-    if (!audio) return
-
+    const audio = audioRef.current;
+    if (!audio) return;
+    
+    if (currentlyPlaying === sound.id) {
+      audio.play().catch(err => console.log('Error playing sound:', err));
+      setIsPlaying(true);
+    } else {
+      audio.pause();
+      setIsPlaying(false);
+    }
+  }, [currentlyPlaying, sound.id]);
+  
+  // Autoplay if specified
+  useEffect(() => {
+    if (autoplayOnMount) {
+      play(sound.id);
+    }
+  }, [autoplayOnMount, play, sound.id]);
+  
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    
     const setAudioData = () => {
       setDuration(audio.duration)
     }
-
+    
     const setAudioTime = () => {
       setCurrentTime(audio.currentTime)
     }
-
+    
+    const handleEnded = () => {
+      setIsPlaying(false)
+      stop();
+    }
+    
     audio.addEventListener('loadeddata', setAudioData)
     audio.addEventListener('timeupdate', setAudioTime)
-    audio.addEventListener('ended', () => setIsPlaying(false))
-
+    audio.addEventListener('ended', handleEnded)
+    
     return () => {
       audio.removeEventListener('loadeddata', setAudioData)
       audio.removeEventListener('timeupdate', setAudioTime)
-      audio.removeEventListener('ended', () => setIsPlaying(false))
+      audio.removeEventListener('ended', handleEnded)
     }
-  }, [sound.audioSrc]) // Reload when audio source changes
-
+  }, [sound.audioSrc, stop])
+  
   const togglePlay = () => {
-    const audio = audioRef.current
-    if (!audio) return
-
     if (isPlaying) {
-      audio.pause()
+      stop();
     } else {
-      audio.play()
+      play(sound.id);
     }
-    setIsPlaying(!isPlaying)
   }
-
+  
   const handleTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const audio = audioRef.current
-    if (!audio) return
-
-    const newTime = parseFloat(e.target.value)
-    audio.currentTime = newTime
-    setCurrentTime(newTime)
+    const audio = audioRef.current;
+    if (!audio) return;
+    const newTime = parseFloat(e.target.value);
+    audio.currentTime = newTime;
+    setCurrentTime(newTime);
   }
-
+  
   const formatTime = (time: number) => {
-    if (isNaN(time)) return '0:00'
-    const minutes = Math.floor(time / 60)
-    const seconds = Math.floor(time % 60).toString().padStart(2, '0')
-    return `${minutes}:${seconds}`
+    if (isNaN(time)) return '0:00';
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60).toString().padStart(2, '0');
+    return `${minutes}:${seconds}`;
   }
 
   if (compact) {

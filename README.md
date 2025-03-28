@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lung Auscultation Interactive Learning Tool
 
-## Getting Started
+An educational web application for medical students and healthcare professionals to learn about lung auscultation, breath sounds, and their clinical significance.
 
-First, run the development server:
+![Lung Auscultation Demo](/Users/shubhisatvik/Documents/auscultation/lung-auscultation-demo/public/preview.png)
 
-```bash
+## Live Demo
+
+Visit the live demo: [Lung Auscultation Demo](https://lung-auscultation-demo.vercel.app/)
+
+## Project Overview
+
+This interactive educational tool was developed by students of State Ghazipur Homoeopathic Medical College & Hospital to help medical students and practitioners learn about normal and abnormal breath sounds. The application provides a virtual environment for exploring different lung regions, listening to authentic breath sounds, and understanding their clinical significance.
+
+## Features
+
+- **Interactive Lung Visualization**: Click on different regions of the lungs to hear corresponding breath sounds
+- **Comprehensive Sound Library**: Collection of normal and abnormal breath sounds including:
+  - Normal vesicular breath sounds
+  - Bronchial and broncho-vesicular sounds
+  - Abnormal sounds: wheezes, crackles, rhonchi, stridor, pleural rubs
+- **Educational Content**: In-depth explanations about auscultation technique, respiratory anatomy, and clinical significance
+- **Sound Comparison Tool**: Compare normal vs. abnormal sounds to better understand differences
+- **Mobile Responsive Design**: Learn on any device
+
+## Technologies Used
+
+- **Next.js 15**: React framework for server-rendered applications
+- **React**: Frontend UI library
+- **Tailwind CSS**: Utility-first CSS framework for styling
+- **Web Audio API**: For high-quality sound processing and playback
+- **TypeScript**: Type-safe JavaScript for better code quality
+
+## Setup and Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Shubhshackyard/lung-auscultation-demo.git
+   cd lung-auscultation-demo
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Add audio files:
+Create a /public/audio/ directory
+Add the required sound files:
+- **normal-breath.mp3**
+- **bronchial.mp3**
+- **broncho-vesicular.mp3**
+- **wheezing.mp3**
+- **crackles.mp3**
+- **rhonchi.mp3**
+- **stridor.mp3**
+- **pleural-rub.mp3**
+
+4. Start the development server:
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Open http://localhost:3000 in your browser
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
+lung-auscultation-demo/
+├── public/
+│   ├── audio/            # Breath sound recordings
+│   └── images/           # Static images
+├── src/
+│   ├── app/              # Next.js app router pages
+│   ├── components/       # Reusable components
+│   │   ├── AudioPlayer.tsx
+│   │   ├── Hero.tsx
+│   │   └── LungVisualizer.tsx
+│   └── data/             # Data files for the application
+└── ...config files
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Usage
+1. Home Page: Explore the interactive lung visualization or browse the sound library
+2. Interactive Map: Click on different parts of the lungs to hear corresponding sounds
+3. Sound Library: Listen to categorized breath sounds with descriptions
+4. Education Page: Access in-depth information about auscultation techniques and clinical significance
 
-## Learn More
+## Credits and Acknowledgments
+# Faculty Advisors:
+**Dr. Sunrita Das (Assistant Professor)**
+**Dr. Dharmesh Gujarati (Assistant Professor)**
+**Dr. R.R. Mishra (Guest Lecturer)**
 
-To learn more about Next.js, take a look at the following resources:
+# Project Team:
+**Mr. Imran Qamar Khan**
+**Ms. Kritika Dwivedi**
+**Mr. Mahendra Pratap Singh**
+**Ms. Sadhana Kushwaha**
+**Ms. Satakshi Srivastava**
+**Ms. Shreya Sonker**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.

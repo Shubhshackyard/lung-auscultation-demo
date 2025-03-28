@@ -143,15 +143,14 @@ export default function EducationPage() {
                 <div className="md:w-1/3 flex justify-center">
                   <div className="bg-teal-50 rounded-lg p-4 flex flex-col items-center">
                     <div className="text-teal-800 mb-2 text-sm font-medium">Respiratory System</div>
-                    <svg className="w-full max-w-xs text-teal-700" viewBox="0 0 512 512" fill="currentColor">
-                      <path d="M256 60c-10 0-18 8-18 18v140c0 10 8 18 18 18s18-8 18-18V78c0-10-8-18-18-18z" opacity="0.9" />
-                      <path d="M256 200c-6 0-10 1-10 4 0 3-25 25-40 40s-35 40-35 70 15 55 30 70 35 25 55 25 40-10 55-25 30-40 30-70-20-55-35-70-40-37-40-40c0-3-4-4-10-4z" opacity="0.7" />
-                      <path d="M246 204c-3 3-25 25-40 40s-35 40-35 70 15 55 30 70 35 25 55 25" fill="none" stroke="currentColor" strokeWidth="10" />
-                      <path d="M266 204c3 3 25 25 40 40s35 40 35 70-15 55-30 70-35 25-55 25" fill="none" stroke="currentColor" strokeWidth="10" />
-                      <path d="M180 220c-40 0-70 30-80 60s-10 70 0 100 30 60 70 70 80 0 100-30c-20-25-30-60-30-100s10-75 30-100c-20-30-50-30-90 0z" opacity="0.85" />
-                      <path d="M332 220c40 0 70 30 80 60s10 70 0 100-30 60-70 70-80 0-100-30c20-25 30-60 30-100s-10-75-30-100c20-30 50-30 90 0z" opacity="0.85" />
-                    </svg>
-                    <div className="text-xs text-gray-600 mt-2 text-center">Simplified representation of the respiratory system showing trachea, bronchi, and lungs</div>
+                    <div className="relative w-full max-w-xs">
+                      <img 
+                        src="/images/respiratory-system.png" 
+                        alt="Simplified diagram of the respiratory system showing trachea, bronchi, and lungs"
+                        className="w-full h-auto" 
+                      />
+                    </div>
+                    <div className="text-xs text-gray-600 mt-2 text-center">Detailed representation of the respiratory system </div>
                   </div>
                 </div>
               </div>

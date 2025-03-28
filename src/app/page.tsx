@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Hero from '@/components/Hero'
 import AudioPlayer from '@/components/AudioPlayer'
 import LungVisualizer from '@/components/LungVisualizer'
+import { useAudio } from '@/context/AudioContext'
 
 // Define the Sound type that matches AudioPlayer's requirements
 type Sound = {
@@ -87,13 +88,14 @@ export default function Home() {
   const [activeSound, setActiveSound] = useState(lungSounds[0])
   const [comparisonSound, setComparisonSound] = useState<typeof lungSounds[0] | null>(null)
   const [isComparisonMode, setIsComparisonMode] = useState(false)
+  const { play } = useAudio();
   
   const handleRegionSelect = (region: { id: string, name: string, audio: string }) => {
     const sound = lungSounds.find(s => s.audioSrc === region.audio) || lungSounds[0]
     setActiveSound(sound)
     
-    // Remove the scrolling and highlighting behavior
-    // The selected sound will now only update in the selected sound section
+    // Autoplay the sound when a region is selected
+    play(sound.id)
   }
 
   const toggleComparisonMode = () => {
@@ -109,8 +111,10 @@ export default function Home() {
   const handleSoundSelection = (sound: typeof lungSounds[0]) => {
     if (isComparisonMode) {
       setComparisonSound(sound)
+      play(sound.id)
     } else {
       setActiveSound(sound)
+      play(sound.id)
     }
   }
 

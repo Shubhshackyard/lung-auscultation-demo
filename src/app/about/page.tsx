@@ -133,6 +133,15 @@ export default function AboutPage() {
                 <div>
                   <h3 className="text-xl font-medium text-blue-700 mb-4">Student Project Team</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="flex items-start">
+                      <div className="bg-teal-100 rounded-full h-10 w-10 flex items-center justify-center mr-3">
+                        <span className="text-teal-700 font-medium">SS</span>
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-gray-900">Ms. Shreya Sonker</h4>
+                        <p className="text-sm text-gray-500">Project Lead</p>
+                      </div>
+                    </div>
                     <div className="flex items-start">
                       <div className="bg-teal-100 rounded-full h-10 w-10 flex items-center justify-center mr-3">
                         <span className="text-teal-700 font-medium">IQ</span>
@@ -180,16 +189,6 @@ export default function AboutPage() {
                       <div>
                         <h4 className="font-medium text-gray-900">Ms. Satakshi Srivastava</h4>
                         <p className="text-sm text-gray-500">Sound Curator</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start">
-                      <div className="bg-teal-100 rounded-full h-10 w-10 flex items-center justify-center mr-3">
-                        <span className="text-teal-700 font-medium">SS</span>
-                      </div>
-                      <div>
-                        <h4 className="font-medium text-gray-900">Ms. Shreya Sonker</h4>
-                        <p className="text-sm text-gray-500">Project Lead</p>
                       </div>
                     </div>
                   </div>
