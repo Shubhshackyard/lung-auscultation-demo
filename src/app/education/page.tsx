@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 
 export default function EducationPage() {
@@ -715,11 +714,11 @@ export default function EducationPage() {
                   <div className="bg-gray-50 p-4 rounded-lg">
                     <h4 className="font-medium text-gray-800 mb-2">Recommended Reading</h4>
                     <ul className="list-disc pl-6 text-sm text-gray-700">
-                      <li>Bates' Guide to Physical Examination and History Taking</li>
+                      <li>Bates&apos; Guide to Physical Examination and History Taking</li>
                       <li>Respiratory Physiology: The Essentials by John B. West</li>
                       <li>Clinical Methods: The History, Physical, and Laboratory Examinations</li>
                       <li>Auscultation Skills: Breath & Heart Sounds by Jessica Shank Coviello</li>
-                      <li>Sapira's Art and Science of Bedside Diagnosis</li>
+                      <li>Sapira&apos;s Art and Science of Bedside Diagnosis</li>
                       <li>The Principles and Practice of Medicine by William Osler</li>
                       <li>Evidence-Based Physical Diagnosis by Steven McGee</li>
                     </ul>

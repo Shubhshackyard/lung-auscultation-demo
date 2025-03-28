@@ -4,7 +4,6 @@ import { useState } from 'react'
 import Hero from '@/components/Hero'
 import AudioPlayer from '@/components/AudioPlayer'
 import LungVisualizer from '@/components/LungVisualizer'
-import Image from "next/image"
 
 // Define the Sound type that matches AudioPlayer's requirements
 type Sound = {
