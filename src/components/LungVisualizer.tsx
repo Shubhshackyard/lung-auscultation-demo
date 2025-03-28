@@ -45,15 +45,15 @@ export default function LungVisualizer({ onSelectRegion }: LungVisualizerProps) 
   const [pulseAnimation, setPulseAnimation] = useState<boolean>(false)
 
   useEffect(() => {
-    if (selectedRegion) {
-      // Trigger pulse animation when region is selected
-      setPulseAnimation(true)
-      const timer = setTimeout(() => {
-        setPulseAnimation(false)
-      }, 2000)
-      
-      return () => clearTimeout(timer)
-    }
+    if (!selectedRegion) return;
+    
+    // Trigger pulse animation when region is selected
+    setPulseAnimation(true)
+    const timer = setTimeout(() => {
+      setPulseAnimation(false)
+    }, 2000)
+    
+    return () => clearTimeout(timer)
   }, [selectedRegion])
 
   const handleRegionClick = (region: LungRegion) => {
